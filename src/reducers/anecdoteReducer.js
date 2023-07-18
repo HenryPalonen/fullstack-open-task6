@@ -36,7 +36,13 @@ const anecdotesAtStart = [
           votes: 0
         };
         return [...state, newAnecdote];
-  
+      
+        case 'FILTER':
+          const { filterText } = action.payload;
+          return state.filter(anecdote =>
+                anecdote.content.toLowerCase().includes(filterText.toLowerCase())
+          );  
+
       default:
         return state;
     }
