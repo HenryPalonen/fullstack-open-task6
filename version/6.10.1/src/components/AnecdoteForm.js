@@ -8,7 +8,7 @@ const AnecdoteForm = () => {
 
   const handleAddAnecdote = (e) => {
     e.preventDefault();
-    dispatch(addAnecdote({ content: newAnecdote }));
+    dispatch(addAnecdote(newAnecdote));
     setNewAnecdote('');
   };
 
@@ -29,5 +29,6 @@ const AnecdoteForm = () => {
   );
 };
 
-export default AnecdoteForm;
 
+
+export default AnecdoteForm;

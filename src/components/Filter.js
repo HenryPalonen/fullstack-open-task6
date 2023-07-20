@@ -1,24 +1,24 @@
-import { useDispatch } from 'react-redux'
-import { filterAnecdotes } from '../reducers/filterReducer'
+import { useDispatch, useSelector } from 'react-redux';
+import { setFilterText } from '../reducers/filterReducer';
 
 const Filter = () => {
-	const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const filterText = useSelector((state) => state.filter);
 
-	const handleChange = event => {
-		const text = event.target.value
-		dispatch(filterAnecdotes(text))
-	}
-	const style = {
-		marginBottom: 10,
-	}
+  const handleChange = (event) => {
+    const text = event.target.value;
+    dispatch(setFilterText(text));
+  };
 
-	return (
-		<div style={style}>
-			filter <input onChange={handleChange} />
-		</div>
-	)
-}
+  const style = {
+    marginBottom: 10,
+  };
 
+  return (
+    <div style={style}>
+      filter <input onChange={handleChange} value={filterText} />
+    </div>
+  );
+};
 
-
-export default Filter
+export default Filter;
