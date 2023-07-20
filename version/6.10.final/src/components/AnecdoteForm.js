@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createAnecdote } from '../reducers/anecdoteReducer';
-import { setNotification } from '../reducers/notificationReducer'
-
+import { addAnecdote } from '../reducers/anecdoteReducer';
+import { setNotification } from '../reducers/notificationReducer';
 
 const AnecdoteForm = () => {
   const dispatch = useDispatch();
@@ -10,9 +9,8 @@ const AnecdoteForm = () => {
 
   const handleAddAnecdote = (e) => {
     e.preventDefault();
-    dispatch(createAnecdote({ content: newAnecdote }));
-    // Notification
-    dispatch(setNotification(`Created new anecdote: ${newAnecdote.content}`, 5))
+    dispatch(addAnecdote({ content: newAnecdote }));
+    dispatch(setNotification(`You voted on anecdote: ${newAnecdote.content}`, 5));
     setNewAnecdote('');
   };
 
