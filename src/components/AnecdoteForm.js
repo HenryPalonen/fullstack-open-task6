@@ -10,7 +10,7 @@ const AnecdoteForm = () => {
 
   const handleAddAnecdote = (e) => {
     e.preventDefault();
-    dispatch(createAnecdote({ content: newAnecdote }));
+    dispatch(createAnecdote({ newAnecdote }));
     // Notification
     dispatch(setNotification(`Created new anecdote: ${newAnecdote.content}`, 5))
     setNewAnecdote('');
