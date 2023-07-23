@@ -11,7 +11,6 @@ const Notification = (props) => {
 
   const notification = useSelector(state => state.notifications)
 
-  // rendering
   return (
     <div>
       {notification &&

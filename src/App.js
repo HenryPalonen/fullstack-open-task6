@@ -7,12 +7,21 @@ import Filter from './components/Filter';
 import { initializeAnecdotes } from './reducers/anecdoteReducer'
 
 const App = () => {
-  
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(initializeAnecdotes())
-  }, [dispatch])
-  
+    const fetchAnecdotes = async () => {
+      try {
+        await dispatch(initializeAnecdotes());
+      } catch (error) {
+        // Handle the error here 
+        console.error('Error initializing anecdotes:', error);
+      }
+    };
+
+    fetchAnecdotes();
+  }, [dispatch]);
+
   return (
     <div>
       <h2>Anecdotes</h2>
@@ -24,4 +33,3 @@ const App = () => {
 };
 
 export default App;
-

@@ -3,20 +3,20 @@ import { voteAnecdote } from '../reducers/anecdoteReducer'
 import { setNotification } from '../reducers/notificationReducer'
 
 const AnecdoteList = () => {
-  const dispatch = useDispatch()
+  
   const anecdotes = useSelector(state => state.anecdotes);
-   
+  const dispatch = useDispatch()
 
     // make a copy of anecdotes to avoid state mutation errors
-    let sortedAnecdotes = [...anecdotes].sort((a, b) => (b.votes - a.votes))
+  let sortedAnecdotes = [...anecdotes].sort((a, b) => (b.votes - a.votes))
 
-    const vote = (anecdote) => {
+   
+  const vote = (anecdote) => {
         dispatch(voteAnecdote(anecdote))
-        
         // Notification
         dispatch(setNotification(`voted on anecdote: ${anecdote.content}`, 5))
-    }
-
+  }
+    
     return (
         <div>
             {sortedAnecdotes.map(anecdote =>
@@ -30,6 +30,7 @@ const AnecdoteList = () => {
              )}
         </div>
     )
+    
 }
 
 export default AnecdoteList

@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 // internal imports
 import anecdoteService from '../services/anecdoteService'
+//import { getAll, createNew, updateVotes } from '../services/anecdoteService'
 
 
 const anecdoteSlice = createSlice({
@@ -28,10 +29,15 @@ export const { updateVoteAnecdote, appendAnecdote, setAnecdotes } = anecdoteSlic
 
 export const initializeAnecdotes = () => {
   return async dispatch => {
-    const anecdotes = await anecdoteService.getAll()
-    dispatch(setAnecdotes(anecdotes))
-  }
-}
+    try {
+      const anecdotes = await anecdoteService.getAll();
+      dispatch(setAnecdotes(anecdotes));
+    } catch (error) {
+      // Handle the error here (e.g., dispatch an action to show an error message)
+      console.error('Error fetching anecdotes:', error);
+    }
+  };
+};
 
 export const createAnecdote = content => {
   return async dispatch => {
@@ -46,7 +52,7 @@ export const voteAnecdote = (anecdote) => {
       ...anecdote,
       votes: anecdote.votes + 1
     }
-    const votedAnecdote = await anecdoteService.updateVotes(anecdoteToVote)
+    const votedAnecdote = await anecdoteService.update(anecdoteToVote)
     dispatch(updateVoteAnecdote(votedAnecdote))
   }
 }
